@@ -94,14 +94,51 @@ public class PDFGenerator {
             cl.setBorder(0);
             label2.addCell(cl);
 
+            PdfPTable label3 = new PdfPTable(1);
+            celda = new Paragraph(new Paragraph("3.- Identificación de requerimiento", smallBold));
+            cl = new PdfPCell(celda);
+            cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cl.setBorder(0);
+            label3.addCell(cl);
+
+            PdfPTable label4 = new PdfPTable(1);
+            celda = new Paragraph(new Paragraph("4.- Aprobación", smallBold));
+            cl = new PdfPCell(celda);
+            cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cl.setBorder(0);
+            label4.addCell(cl);
+
+            PdfPTable label5 = new PdfPTable(1);
+            celda = new Paragraph(new Paragraph("5.- Verificación de Energía Cero", smallBold));
+            cl = new PdfPCell(celda);
+            cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cl.setBorder(0);
+            label5.addCell(cl);
+
+            PdfPTable label6 = new PdfPTable(1);
+            celda = new Paragraph(new Paragraph("6.- Registro de Bloqueo Departamentales Dueño de Área (primer bloqueo)", smallBold));
+
+            cl = new PdfPCell(celda);
+            cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cl.setBorder(0);
+            label6.addCell(cl);
+
             PdfPTable tabla4 = new PdfPTable(4);
             PdfPTable solicitantesTable = new PdfPTable(5);
             PdfPTable areatable = new PdfPTable(3);
+            PdfPTable requerimientotablelabel = new PdfPTable(2);
+            PdfPTable requerimientotable = new PdfPTable(3);
+            PdfPTable aprobaciontable = new PdfPTable(5);
+            PdfPTable energiatable = new PdfPTable(6);
             //document.add(parrafo1);
             headLabel(tabla3);
             solicitantesHeader(tabla4);
             solicitantesTabla(solicitantesTable);
             areaTable(areatable);
+            requerimientoTableLabel(requerimientotablelabel);
+            requerimientoTable(requerimientotable);
+            aprobacionTable(aprobaciontable);
+            energiaTable(energiatable);
             //document.add(tabla1);
             //document.add(tabla2);
             document.add(tabla3);
@@ -111,6 +148,14 @@ public class PDFGenerator {
             document.add(solicitantesTable);
             document.add(label2);
             document.add(areatable);
+            document.add(label3);
+            document.add(requerimientotablelabel);
+            document.add(requerimientotable);
+            document.add(label4);
+            document.add(aprobaciontable);
+            document.add(label5);
+            document.add(energiatable);
+            document.add(label6);
             document.close();
             System.out.println("Your PDF file has been generated!(¡Se ha generado tu hoja PDF!");
         } catch (DocumentException documentException) {
@@ -156,6 +201,7 @@ public class PDFGenerator {
             cl.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cl);
         }
+
         void solicitantesHeader(PdfPTable table){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
@@ -163,31 +209,19 @@ public class PDFGenerator {
             //celda lider
             BaseColor color = new BaseColor(128,255,255);
             Paragraph celda = new Paragraph();
-            celda.add(new Paragraph("Lider de Actividad", contentBold));
             PdfPCell cl = new PdfPCell(celda);
-            cl.setBackgroundColor(color);
-            cl.setHorizontalAlignment(Element.ALIGN_LEFT);
-            table.addCell(cl);
-            celda = new Paragraph();
-            celda.add(new Paragraph("Disciplina", contentBold));
-            cl = new PdfPCell(celda);
-            cl.setBackgroundColor(color);
-            cl.setHorizontalAlignment(Element.ALIGN_LEFT);
-            table.addCell(cl);
-            celda = new Paragraph();
-            celda.add(new Paragraph("Empresa", contentBold));
-            cl = new PdfPCell(celda);
-            cl.setBackgroundColor(color);
-            cl.setHorizontalAlignment(Element.ALIGN_LEFT);
-            table.addCell(cl);
-            celda = new Paragraph();
-            celda.add(new Paragraph("Celular", contentBold));
-            cl = new PdfPCell(celda);
-            cl.setBackgroundColor(color);
-            cl.setHorizontalAlignment(Element.ALIGN_LEFT);
-            table.addCell(cl);
-
+            int columns = table.getNumberOfColumns();
+            String label[] = {"Lider de actividad", "Disciplina", "Empresa", "Celular"};
+            for (int i = 0; i<columns; i++){
+                celda = new Paragraph();
+                celda.add(new Paragraph(label[i], contentBold));
+                cl = new PdfPCell(celda);
+                cl.setBackgroundColor(color);
+                cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+                table.addCell(cl);
+            }
         }
+
         void solicitantesTabla (PdfPTable table){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
@@ -215,6 +249,7 @@ public class PDFGenerator {
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 9);
+            BaseColor color = new BaseColor(128,255,255);
             int filas =3;
             int columnas =3;
             String label[] = {"Equipo o Sistema", "Área de Bloqueo (OIM/DIS/DPM/ETC)", "Tag o Sistema"};
@@ -222,15 +257,125 @@ public class PDFGenerator {
             PdfPCell cl = new PdfPCell(celda);
             for (int i = 0; i<filas; i++){
                 celda = new Paragraph();
-                celda.add(new Paragraph(label[i]));
+                celda.add(new Paragraph(label[i], contentBold));
                 cl = new PdfPCell(celda);
+                cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+                cl.setBackgroundColor(color);
                 table.addCell(cl);
+            }
+            for (int i = 0; i<filas; i++){
                 for (int j = 0; j<columnas; j++){
                     celda = new Paragraph();
-                    celda.add(new Paragraph(" ")); //agregar dinamicamente
+                    celda.add(new Paragraph(" ", contentBold)); //agregar
                     cl = new PdfPCell(celda);
                     table.addCell(cl);
                 }
             }
         }
+        void requerimientoTableLabel(PdfPTable table){
+            Font title = new Font(Font.FontFamily.HELVETICA, 7);
+            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
+            Font content = new Font(Font.FontFamily.HELVETICA, 9);
+            BaseColor color = new BaseColor(128,255,255);
+
+            int columnas = table.getNumberOfColumns();
+            String label[] = {"Trabajo a realizar (Especifique)", "Solicitud de fecha y hora de Bloqueo"};
+            Paragraph celda = new Paragraph();
+            PdfPCell cl = new PdfPCell(celda);
+            for(int i = 0; i<columnas; i++){
+                celda = new Paragraph();
+                celda.add(new Paragraph(label[i], contentBold));
+                cl = new PdfPCell(celda);
+                cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+                cl.setBackgroundColor(color);
+                table.addCell(cl);
+            }
+        }
+
+        void requerimientoTable(PdfPTable table){
+            Font title = new Font(Font.FontFamily.HELVETICA, 7);
+            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
+            Font content = new Font(Font.FontFamily.HELVETICA, 9);
+            BaseColor color = new BaseColor(128,255,255);
+            Paragraph celda = new Paragraph();
+            PdfPCell cl = new PdfPCell(celda);
+
+            int columnas = table.getNumberOfColumns();
+            int filas = 2;
+            String label[] = {"Desde (Hora/Fecha)","Hasta (Hora/Fecha)"};
+            for (int i = 0; i<filas; i++){
+                for (int j = 0; j<columnas; j++){
+                    celda = new Paragraph();
+                    if(j == 1){
+                        celda.add(new Paragraph(new Paragraph(label[i], contentBold)));
+                        cl = new PdfPCell(celda);
+                        cl.setBackgroundColor(color);
+                    }
+                    else{
+                        celda.add(new Paragraph(new Paragraph(" ", contentBold)));
+                        cl = new PdfPCell(celda);
+                    }
+                    cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    table.addCell(cl);
+                }
+            }
+        }
+
+        void aprobacionTable(PdfPTable table){
+            Font title = new Font(Font.FontFamily.HELVETICA, 7);
+            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
+            Font content = new Font(Font.FontFamily.HELVETICA, 9);
+            BaseColor color = new BaseColor(128,255,255);
+            Paragraph celda = new Paragraph();
+            PdfPCell cl = new PdfPCell(celda);
+
+            String label[] = {"Dueño de Área de bloqueo", "Fecha/hora envió solicitud", "Aprobación (SI / NO)", "Fecha", "Firma"};
+            int columnas = table.getNumberOfColumns();
+            int filas = 1;
+
+            for (int i = 0; i<columnas; i++){
+                celda = new Paragraph();
+                celda.add(new Paragraph(label[i], contentBold));
+                cl = new PdfPCell(celda);
+                cl.setBackgroundColor(color);
+                table.addCell(cl);
+            }
+            for (int i = 0; i<columnas; i++){//agregar datos
+                celda = new Paragraph();
+                celda.add(new Paragraph(" ", contentBold));
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+            }
+        }
+
+        void energiaTable(PdfPTable table){
+            Font title = new Font(Font.FontFamily.HELVETICA, 7);
+            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
+            Font content = new Font(Font.FontFamily.HELVETICA, 9);
+            BaseColor color = new BaseColor(128,255,255);
+            Paragraph celda = new Paragraph();
+            PdfPCell cl = new PdfPCell(celda);
+
+            String label[] = {"Nombre del que realiza la Verificación de Energía Cero", "Empresa", "Firma", "Valor medio", "Instrumernto", "Proceder (SI/NO"};
+            int columnas = table.getNumberOfColumns();
+            int filas = 2;//cambiar
+            for (int i = 0; i<columnas; i++){
+                celda = new Paragraph();
+                celda.add(new Paragraph(label[i], contentBold));
+                cl = new PdfPCell(celda);
+                cl.setBackgroundColor(color);
+                table.addCell(cl);
+            }
+            for (int i = 0; i<filas; i++) {
+                for (int j = 0; j < columnas; j++) {
+                    celda = new Paragraph();
+                    celda.add(new Paragraph(" ", contentBold)); //agregar
+                    cl = new PdfPCell(celda);
+                    table.addCell(cl);
+                }
+            }
+        }
+
+
+
     }

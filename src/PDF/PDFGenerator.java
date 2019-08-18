@@ -12,11 +12,10 @@ public class PDFGenerator {
         // Fonts definitions (Definición de fuentes).
         private static final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 26, Font.BOLDITALIC);
         private static final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
-
         private static final Font categoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-        private static final Font subcategoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
-        private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
-        private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 4, Font.BOLD);
+        private static final Font content = new Font(Font.FontFamily.TIMES_ROMAN, 7, Font.BOLD);
+        private static final Font headerFont = new Font(Font.FontFamily.TIMES_ROMAN, 7, Font.BOLD, BaseColor.WHITE);
+        private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 7, Font.BOLD);
 
     public void createPDF(File pdfNewFile) {
         // We create the document and set the file name.
@@ -142,22 +141,22 @@ public class PDFGenerator {
             energiatable.setWidths(new float[] {3f, 2f, 1.2f, 1.2f, 0.7f, 0.9f});
             PdfPTable headerbloqueo = new PdfPTable(6);
             headerbloqueo.setWidthPercentage(95);
-            headerbloqueo.setWidths(new float[] {0.4f, 2.6f, 0.6f, 1.4f, 2f, 2f});
+            headerbloqueo.setWidths(new float[] {0.4f, 2.6f, 0.7f, 1.3f, 2f, 2f});
             PdfPTable headerbloqueo2 = new PdfPTable(10);
             headerbloqueo2.setWidthPercentage(95);
-            headerbloqueo2.setWidths(new float[] {0.4f, 2.6f, 0.6f, 1.4f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
+            headerbloqueo2.setWidths(new float[] {0.4f, 2.6f, 0.7f, 1.3f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
             PdfPTable bloquerodepartamentalduenotable = new PdfPTable(10);
             bloquerodepartamentalduenotable.setWidthPercentage(95);
-            bloquerodepartamentalduenotable.setWidths(new float[] {0.4f, 2.6f, 0.6f, 1.4f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
+            bloquerodepartamentalduenotable.setWidths(new float[] {0.4f, 2.6f, 0.7f, 1.3f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
             PdfPTable headerbloqueodepartamentallider = new PdfPTable(6);
             headerbloqueodepartamentallider.setWidthPercentage(95);
-            headerbloqueodepartamentallider.setWidths(new float[] {0.4f, 2.6f, 0.6f, 1.4f, 2f, 2f});
+            headerbloqueodepartamentallider.setWidths(new float[] {0.4f, 2.6f, 0.7f, 1.3f, 2f, 2f});
             PdfPTable bloqueodepartamentallidertable = new PdfPTable(10);
             bloqueodepartamentallidertable.setWidthPercentage(95);
-            bloqueodepartamentallidertable.setWidths(new float[] {0.4f, 2.6f, 0.6f, 1.4f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
+            bloqueodepartamentallidertable.setWidths(new float[] {0.4f, 2.6f, 0.7f, 1.3f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
             PdfPTable bloqueopersonaltable = new PdfPTable(10);
             bloqueopersonaltable.setWidthPercentage(95);
-            bloqueopersonaltable.setWidths(new float[] {0.4f, 2.6f, 0.6f, 1.4f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
+            bloqueopersonaltable.setWidths(new float[] {0.4f, 2.6f, 0.7f, 1.3f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
             PdfPTable observaciones = new PdfPTable(1);
             observaciones.setWidthPercentage(95);
             //document.add(parrafo1);
@@ -213,9 +212,9 @@ public class PDFGenerator {
         }
     }
         private void crearHeader(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 9);
+            Font title = new Font(Font.FontFamily.HELVETICA, 11);
+            Font headerFont1 = new Font(Font.FontFamily.HELVETICA, 8, Font.BOLD);
+            Font content = new Font(Font.FontFamily.HELVETICA, 13);
             //celda logo
             Paragraph celda = new Paragraph();
 
@@ -223,7 +222,7 @@ public class PDFGenerator {
             Image image;
             try {
                 image = Image.getInstance(url);
-                image.scalePercent(2,2);// tamaño de la imagen
+                image.scalePercent(4,4);// tamaño de la imagen
                 image.setAlignment(Element.ALIGN_CENTER);
                 celda.add(new Paragraph(""));//imagen no quede topando con el borde
                 PdfPCell cl = new PdfPCell(celda);
@@ -252,13 +251,13 @@ public class PDFGenerator {
 
             //Celda derecha
             celda = new Paragraph();
-            celda.add(new Paragraph("PMChS", contentBold));
+            celda.add(new Paragraph("PMChS", headerFont1));
             celda.add("\n");
-            celda.add(new Paragraph("Proyecto Mina", contentBold));
+            celda.add(new Paragraph("Proyecto Mina", headerFont1));
             celda.add("\n");
-            celda.add(new Paragraph("Chuquicamata", contentBold));
+            celda.add(new Paragraph("Chuquicamata", headerFont1));
             celda.add("\n");
-            celda.add(new Paragraph("Subterráneo", contentBold));
+            celda.add(new Paragraph("Subterráneo", headerFont1));
             cl = new PdfPCell(celda);
             cl.setBackgroundColor(color);
             cl.setBorder(Rectangle.TOP | Rectangle.BOTTOM | Rectangle.RIGHT);
@@ -267,10 +266,6 @@ public class PDFGenerator {
         }
 
         private void creaHeadersolicitantes(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
             //labels
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
@@ -278,7 +273,7 @@ public class PDFGenerator {
             String label[] = {"Lider de actividad", "Disciplina", "Empresa", "Celular"};
             for (int i = 0; i<columns; i++){
                 celda = new Paragraph();
-                celda.add(new Paragraph(label[i], contentBold));
+                celda.add(new Paragraph(label[i], headerFont));
                 cl = new PdfPCell(celda);
                 cl.setBackgroundColor(color);
                 cl.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -287,10 +282,6 @@ public class PDFGenerator {
         }
         //tabla de datos solicitantes
         private void crearSolicitantesTable(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int filas = 4;//asignar despues con valores dinamicos
@@ -302,7 +293,7 @@ public class PDFGenerator {
                         celda.add(new Paragraph(Integer.toString(i+1), content));
                     }
                     else{
-                        celda.add(new Paragraph(" ", contentBold));//asignar dinamicamente luego
+                        celda.add(new Paragraph(" ", PDFGenerator.headerFont));//asignar dinamicamente luego
                     }
                     cl = new PdfPCell(celda);
                     cl.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -312,10 +303,8 @@ public class PDFGenerator {
         }
 
         private void crearAreaTable(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
+
+            PDFGenerator.headerFont.setColor(BaseColor.WHITE);
             int filas =3;
             int columnas =3;
             String label[] = {"Equipo o Sistema", "Área de Bloqueo (OIM/DIS/DPM/ETC)", "Tag o Sistema"};
@@ -323,7 +312,7 @@ public class PDFGenerator {
             PdfPCell cl = new PdfPCell(celda);
             for (int i = 0; i<filas; i++){
                 celda = new Paragraph();
-                celda.add(new Paragraph(label[i], contentBold));
+                celda.add(new Paragraph(label[i], PDFGenerator.headerFont));
                 cl = new PdfPCell(celda);
                 cl.setHorizontalAlignment(Element.ALIGN_LEFT);
                 cl.setBackgroundColor(color);
@@ -339,10 +328,6 @@ public class PDFGenerator {
             }
         }
         private void crearHeaderRequerimiento(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
 
             int columnas = table.getNumberOfColumns();
             String label[] = {"Trabajo a realizar (Especifique)", "Solicitud de fecha y hora de Bloqueo"};
@@ -350,7 +335,7 @@ public class PDFGenerator {
             PdfPCell cl = new PdfPCell(celda);
             for(int i = 0; i<columnas; i++){
                 celda = new Paragraph();
-                celda.add(new Paragraph(label[i], contentBold));
+                celda.add(new Paragraph(label[i], PDFGenerator.headerFont));
                 cl = new PdfPCell(celda);
                 cl.setHorizontalAlignment(Element.ALIGN_LEFT);
                 cl.setBackgroundColor(color);
@@ -359,10 +344,7 @@ public class PDFGenerator {
         }
 
         private void crearRequerimientoTable(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
+
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             color = new BaseColor(149, 168, 222);
@@ -388,11 +370,6 @@ public class PDFGenerator {
         }
 
         private void crearAprobacionTable(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
-
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
 
@@ -402,24 +379,20 @@ public class PDFGenerator {
 
             for (int i = 0; i<columnas; i++){
                 celda = new Paragraph();
-                celda.add(new Paragraph(label[i], contentBold));
+                celda.add(new Paragraph(label[i], PDFGenerator.headerFont));
                 cl = new PdfPCell(celda);
                 cl.setBackgroundColor(color);
                 table.addCell(cl);
             }
             for (int i = 0; i<columnas; i++){//agregar datos
                 celda = new Paragraph();
-                celda.add(new Paragraph(" ", contentBold));
+                celda.add(new Paragraph(" ", PDFGenerator.headerFont));
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
             }
         }
 
         private void crearEnergiaTable(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
 
@@ -428,7 +401,7 @@ public class PDFGenerator {
             int filas = 2;//cambiar
             for (int i = 0; i<columnas; i++){
                 celda = new Paragraph();
-                celda.add(new Paragraph(label[i], contentBold));
+                celda.add(new Paragraph(label[i], PDFGenerator.headerFont));
                 cl = new PdfPCell(celda);
                 cl.setBackgroundColor(color);
                 table.addCell(cl);
@@ -443,10 +416,6 @@ public class PDFGenerator {
             }
         }
         private void crearHeaderBloqueo(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             String label[] = {"Núm.", "Nombre", "N°Candado", "Empresa", "Bloqueo (inicio de Bloqueo)", "Desbloqueo (Cierre de Hoja de Bloqueo)"};
@@ -455,7 +424,7 @@ public class PDFGenerator {
 
             for (int i = 0; i<columnas; i++){
                 celda = new Paragraph();
-                celda.add(new Paragraph(label[i], contentBold));
+                celda.add(new Paragraph(label[i], PDFGenerator.headerFont));
                 //celda.setAlignment(Element.ALIGN_CENTER);
                 cl = new PdfPCell(celda);
                 cl.setBackgroundColor(color);
@@ -470,7 +439,7 @@ public class PDFGenerator {
 //            String label2[] = {"Fecha", "Hora", "Firma"};
 //            for (int i = 0; i<3; i++){
 //                celda = new Paragraph();
-//                celda.add(new Paragraph(label2[i], contentBold));
+//                celda.add(new Paragraph(label2[i], headerFont));
 //                cl =  new PdfPCell(celda);
 //                cl.setBorder(Rectangle.NO_BORDER);
 //                cl.setBackgroundColor(color);
@@ -478,7 +447,7 @@ public class PDFGenerator {
 //            }
 //            for (int i = 0; i<4; i++){
 //                celda = new Paragraph();
-//                celda.add(new Paragraph("", contentBold));
+//                celda.add(new Paragraph("", headerFont));
 //                //celda.setAlignment(Element.ALIGN_CENTER);
 //                cl = new PdfPCell(celda);
 //                cl.setBackgroundColor(color);
@@ -498,17 +467,13 @@ public class PDFGenerator {
         }
 
         private void crearHeaderBloqueo2(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
             String label[] = {"Fecha", "Hora", "Firma"};
             for (int i = 0; i<4; i++){
                 celda = new Paragraph();
-                celda.add(new Paragraph(" ", contentBold));
+                celda.add(new Paragraph(" ", PDFGenerator.headerFont));
                 cl =  new PdfPCell(celda);
                 cl.setBackgroundColor(color);
                 cl.setBorder(Rectangle.BOTTOM | Rectangle. LEFT | Rectangle. RIGHT);
@@ -518,7 +483,7 @@ public class PDFGenerator {
             for ( int i = 0; i<2; i++){
                 for (int j = 0; j<3; j++){
                     celda = new Paragraph();
-                    celda.add(new Paragraph(label[j], contentBold));
+                    celda.add(new Paragraph(label[j], PDFGenerator.headerFont));
                     cl =  new PdfPCell(celda);
                     cl.setBackgroundColor(color);
                     table.addCell(cl);
@@ -527,10 +492,6 @@ public class PDFGenerator {
         }
 
         private void crearBloqueoDepartamentalDuenoTable(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
@@ -552,10 +513,6 @@ public class PDFGenerator {
         }
         
         private void crearHeaderBloqueoDepartamentalLider(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             String label[] = {"Núm.", "Nombre", "N°Candado", "Empresa", "Bloqueo", "Desbloqueo"};
@@ -564,7 +521,7 @@ public class PDFGenerator {
 
             for (int i = 0; i<columnas; i++){
                 celda = new Paragraph();
-                celda.add(new Paragraph(label[i], contentBold));
+                celda.add(new Paragraph(label[i], PDFGenerator.headerFont));
                 //celda.setAlignment(Element.ALIGN_CENTER);
                 cl = new PdfPCell(celda);
                 cl.setBackgroundColor(color);
@@ -577,10 +534,6 @@ public class PDFGenerator {
             }
         }
         private void crearBloqueoDepartamentalLiderTable(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
@@ -602,10 +555,6 @@ public class PDFGenerator {
         }
 
         private void creaBloqueoPersonalTable(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
@@ -627,14 +576,10 @@ public class PDFGenerator {
         }
 
         private void crearObservaciones(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 7);
-            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 4);
-            contentBold.setColor(BaseColor.WHITE);
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
-            int filas = 6;
+            int filas = 5;
 
             for (int i = 0; i<filas; i++){
                 celda = new Paragraph();

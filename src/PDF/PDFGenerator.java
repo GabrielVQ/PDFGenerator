@@ -54,6 +54,7 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
+            label2.setWidthPercentage(95);
             label2.addCell(cl);
 
             PdfPTable label3 = new PdfPTable(1);
@@ -61,6 +62,7 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
+            label3.setWidthPercentage(95);
             label3.addCell(cl);
 
             PdfPTable label4 = new PdfPTable(1);
@@ -68,6 +70,7 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
+            label4.setWidthPercentage(95);
             label4.addCell(cl);
 
             PdfPTable label5 = new PdfPTable(1);
@@ -75,6 +78,7 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
+            label5.setWidthPercentage(95);
             label5.addCell(cl);
 
             PdfPTable label6 = new PdfPTable(1);
@@ -82,6 +86,7 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
+            label6.setWidthPercentage(95);
             label6.addCell(cl);
 
             PdfPTable label7 = new PdfPTable(1);
@@ -89,60 +94,99 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
+            label7.setWidthPercentage(95);
             label7.addCell(cl);
+
+            PdfPTable label8 = new PdfPTable(1);
+            celda = new Paragraph(new Paragraph("\n8.- Registro de Bloqueo Personales", smallBold));
+            cl = new PdfPCell(celda);
+            cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cl.setBorder(0);
+            label8.setWidthPercentage(95);
+            label8.addCell(cl);
+
+            PdfPTable label9 = new PdfPTable(1);
+            celda = new Paragraph(new Paragraph("\n9.- Observaciones", smallBold));
+            cl = new PdfPCell(celda);
+            cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cl.setBorder(0);
+            label9.setWidthPercentage(95);
+            label9.addCell(cl);
 
             //Color de tablas
             BaseColor color = new BaseColor(43,69,145);
             //Creacion de tablas
-            PdfPTable headlabel = new PdfPTable(3);
-            headlabel.setWidthPercentage(95);
-            headlabel.setWidths(new float[] {0.5f,2.5f,0.8f});
-            PdfPTable solicitantesheadertable = new PdfPTable(4);
-            solicitantesheadertable.setWidths(new float[] {3f,2f,2f,2f});
+            PdfPTable header = new PdfPTable(3);
+            header.setWidthPercentage(95);
+            header.setWidths(new float[] {0.5f,2.5f,0.8f});
+            PdfPTable headersolicitantestable = new PdfPTable(4);
+            headersolicitantestable.setWidthPercentage(95);
+            headersolicitantestable.setWidths(new float[] {3f,2f,2f,2f});
             PdfPTable solicitantestable = new PdfPTable(5);
+            solicitantestable.setWidthPercentage(95);
             solicitantestable.setWidths(new float[] {0.4f,2.6f,2f,2f,2f});
             PdfPTable areatable = new PdfPTable(3);
+            areatable.setWidthPercentage(95);
             areatable.setWidths(new float[] {3f,2f,4f});
-            PdfPTable requerimientotablelabel = new PdfPTable(2);
-            requerimientotablelabel.setWidths(new float[] {5f,4f});
+            PdfPTable headerrequerimiento = new PdfPTable(2);
+            headerrequerimiento.setWidthPercentage(95);
+            headerrequerimiento.setWidths(new float[] {5f,4f});
             PdfPTable requerimientotable = new PdfPTable(3);
+            requerimientotable.setWidthPercentage(95);
             requerimientotable.setWidths(new float[] {5f, 1.5f, 2.5f});
             PdfPTable aprobaciontable = new PdfPTable(5);
+            aprobaciontable.setWidthPercentage(95);
             aprobaciontable.setWidths(new float[] {3f, 2f, 2f, 1f, 1f});
             PdfPTable energiatable = new PdfPTable(6);
+            energiatable.setWidthPercentage(95);
             energiatable.setWidths(new float[] {3f, 2f, 1.2f, 1.2f, 0.7f, 0.9f});
             PdfPTable headerbloqueo = new PdfPTable(6);
+            headerbloqueo.setWidthPercentage(95);
             headerbloqueo.setWidths(new float[] {0.4f, 2.6f, 0.6f, 1.4f, 2f, 2f});
             PdfPTable headerbloqueo2 = new PdfPTable(10);
+            headerbloqueo2.setWidthPercentage(95);
             headerbloqueo2.setWidths(new float[] {0.4f, 2.6f, 0.6f, 1.4f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
             PdfPTable bloquerodepartamentalduenotable = new PdfPTable(10);
+            bloquerodepartamentalduenotable.setWidthPercentage(95);
             bloquerodepartamentalduenotable.setWidths(new float[] {0.4f, 2.6f, 0.6f, 1.4f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
             PdfPTable headerbloqueodepartamentallider = new PdfPTable(6);
+            headerbloqueodepartamentallider.setWidthPercentage(95);
             headerbloqueodepartamentallider.setWidths(new float[] {0.4f, 2.6f, 0.6f, 1.4f, 2f, 2f});
+            PdfPTable bloqueodepartamentallidertable = new PdfPTable(10);
+            bloqueodepartamentallidertable.setWidthPercentage(95);
+            bloqueodepartamentallidertable.setWidths(new float[] {0.4f, 2.6f, 0.6f, 1.4f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
+            PdfPTable bloqueopersonaltable = new PdfPTable(10);
+            bloqueopersonaltable.setWidthPercentage(95);
+            bloqueopersonaltable.setWidths(new float[] {0.4f, 2.6f, 0.6f, 1.4f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
+            PdfPTable observaciones = new PdfPTable(1);
+            observaciones.setWidthPercentage(95);
             //document.add(parrafo1);
 
-            headLabel(headlabel, color);
-            solicitantesHeader(solicitantesheadertable, color);
-            solicitantesTabla(solicitantestable, color);
-            areaTable(areatable, color);
-            requerimientoTableLabel(requerimientotablelabel, color);
-            requerimientoTable(requerimientotable, color);
-            aprobacionTable(aprobaciontable, color);
-            energiaTable(energiatable, color);
-            headerBloqueo(headerbloqueo, color);
-            crearHeaderBloqueoDepartamental2(headerbloqueo2, color);
+            crearHeader(header, color);
+            creaHeadersolicitantes(headersolicitantestable, color);
+            crearSolicitantesTable(solicitantestable, color);
+            crearAreaTable(areatable, color);
+            crearHeaderRequerimiento(headerrequerimiento, color);
+            crearRequerimientoTable(requerimientotable, color);
+            crearAprobacionTable(aprobaciontable, color);
+            crearEnergiaTable(energiatable, color);
+            crearHeaderBloqueo(headerbloqueo, color);
+            crearHeaderBloqueo2(headerbloqueo2, color);
             crearBloqueoDepartamentalDuenoTable(bloquerodepartamentalduenotable, color);
             crearHeaderBloqueoDepartamentalLider(headerbloqueodepartamentallider, color);
+            crearBloqueoDepartamentalLiderTable(bloqueodepartamentallidertable, color);
+            creaBloqueoPersonalTable(bloqueopersonaltable, color);
+            crearObservaciones(observaciones, color);
             //Agregar elementos al documento
-            document.add(headlabel);
+            document.add(header);
             document.add(parrafo);
             document.add(label1);
-            document.add(solicitantesheadertable);
+            document.add(headersolicitantestable);
             document.add(solicitantestable);
             document.add(label2);
             document.add(areatable);
             document.add(label3);
-            document.add(requerimientotablelabel);
+            document.add(headerrequerimiento);
             document.add(requerimientotable);
             document.add(label4);
             document.add(aprobaciontable);
@@ -153,14 +197,22 @@ public class PDFGenerator {
             document.add(headerbloqueo2);
             document.add(bloquerodepartamentalduenotable);
             document.add(label7);
+            document.add(headerbloqueodepartamentallider);//header bloqueo sin descripcion
+            document.add(headerbloqueo2);
+            document.add(bloqueodepartamentallidertable);
+            document.add(label8);
             document.add(headerbloqueodepartamentallider);
+            document.add(headerbloqueo2);
+            document.add(bloqueopersonaltable);
+            document.add(label9);
+            document.add(observaciones);
             document.close();
             System.out.println("Your PDF file has been generated!(¡Se ha generado tu hoja PDF!");
         } catch (DocumentException documentException) {
             System.out.println("The file not exists (Se ha producido un error al generar un documento): " + documentException);
         }
     }
-        private void headLabel(PdfPTable table, BaseColor color){
+        private void crearHeader(PdfPTable table, BaseColor color){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 9);
@@ -214,7 +266,7 @@ public class PDFGenerator {
             table.addCell(cl);
         }
 
-        private void solicitantesHeader(PdfPTable table, BaseColor color){
+        private void creaHeadersolicitantes(PdfPTable table, BaseColor color){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 4);
@@ -234,7 +286,7 @@ public class PDFGenerator {
             }
         }
         //tabla de datos solicitantes
-        private void solicitantesTabla (PdfPTable table, BaseColor color){
+        private void crearSolicitantesTable(PdfPTable table, BaseColor color){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 4);
@@ -259,7 +311,7 @@ public class PDFGenerator {
             }
         }
 
-        private void areaTable(PdfPTable table, BaseColor color){
+        private void crearAreaTable(PdfPTable table, BaseColor color){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 4);
@@ -286,7 +338,7 @@ public class PDFGenerator {
                 }
             }
         }
-        private void requerimientoTableLabel(PdfPTable table, BaseColor color){
+        private void crearHeaderRequerimiento(PdfPTable table, BaseColor color){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 4);
@@ -306,7 +358,7 @@ public class PDFGenerator {
             }
         }
 
-        private void requerimientoTable(PdfPTable table, BaseColor color){
+        private void crearRequerimientoTable(PdfPTable table, BaseColor color){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 4);
@@ -335,7 +387,7 @@ public class PDFGenerator {
             }
         }
 
-        private void aprobacionTable(PdfPTable table, BaseColor color){
+        private void crearAprobacionTable(PdfPTable table, BaseColor color){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 4);
@@ -363,7 +415,7 @@ public class PDFGenerator {
             }
         }
 
-        private void energiaTable(PdfPTable table, BaseColor color){
+        private void crearEnergiaTable(PdfPTable table, BaseColor color){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 4);
@@ -390,7 +442,7 @@ public class PDFGenerator {
                 }
             }
         }
-        private void headerBloqueo(PdfPTable table, BaseColor color){
+        private void crearHeaderBloqueo(PdfPTable table, BaseColor color){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 4);
@@ -445,7 +497,7 @@ public class PDFGenerator {
 
         }
 
-        void crearHeaderBloqueoDepartamental2(PdfPTable table, BaseColor color){
+        private void crearHeaderBloqueo2(PdfPTable table, BaseColor color){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 4);
@@ -474,7 +526,7 @@ public class PDFGenerator {
             }
         }
 
-        void crearBloqueoDepartamentalDuenoTable(PdfPTable table, BaseColor color){
+        private void crearBloqueoDepartamentalDuenoTable(PdfPTable table, BaseColor color){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 4);
@@ -487,7 +539,7 @@ public class PDFGenerator {
                 for (int j = 0; j<columnas; j++){
                     celda = new Paragraph();
                     if (j==0){
-                        celda.add(new Paragraph(Integer.toString(i), content));
+                        celda.add(new Paragraph(Integer.toString(i+1), content));
                     }
                     else{
                         celda.add(new Paragraph(" ", content));
@@ -499,7 +551,7 @@ public class PDFGenerator {
             }
         }
         
-        void crearHeaderBloqueoDepartamentalLider(PdfPTable table, BaseColor color){
+        private void crearHeaderBloqueoDepartamentalLider(PdfPTable table, BaseColor color){
             Font title = new Font(Font.FontFamily.HELVETICA, 7);
             Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
             Font content = new Font(Font.FontFamily.HELVETICA, 4);
@@ -521,6 +573,73 @@ public class PDFGenerator {
                 cl.setVerticalAlignment(Element.ALIGN_BOTTOM);
                 //cl.setColspan(3);
                 cl.setBorder(Rectangle.TOP| Rectangle. LEFT | Rectangle. RIGHT);
+                table.addCell(cl);
+            }
+        }
+        private void crearBloqueoDepartamentalLiderTable(PdfPTable table, BaseColor color){
+            Font title = new Font(Font.FontFamily.HELVETICA, 7);
+            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
+            Font content = new Font(Font.FontFamily.HELVETICA, 4);
+            contentBold.setColor(BaseColor.WHITE);
+            Paragraph celda = new Paragraph();
+            PdfPCell cl = new PdfPCell(celda);
+            int columnas =  table.getNumberOfColumns();
+            int filas = 4;
+            for (int i = 0; i<filas; i++){
+                for (int j = 0; j<columnas; j++){
+                    celda = new Paragraph();
+                    if (j==0){
+                        celda.add(new Paragraph(Integer.toString(i+1), content));
+                    }
+                    else{
+                        celda.add(new Paragraph(" ", content));
+                    }
+                    cl = new PdfPCell(celda);
+                    cl.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    table.addCell(cl);
+                }
+            }
+        }
+
+        private void creaBloqueoPersonalTable(PdfPTable table, BaseColor color){
+            Font title = new Font(Font.FontFamily.HELVETICA, 7);
+            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
+            Font content = new Font(Font.FontFamily.HELVETICA, 4);
+            contentBold.setColor(BaseColor.WHITE);
+            Paragraph celda = new Paragraph();
+            PdfPCell cl = new PdfPCell(celda);
+            int columnas =  table.getNumberOfColumns();
+            int filas = 15;
+            for (int i = 0; i<filas; i++){
+                for (int j = 0; j<columnas; j++){
+                    celda = new Paragraph();
+                    if (j==0){
+                        celda.add(new Paragraph(Integer.toString(i+1), content));
+                    }
+                    else{
+                        celda.add(new Paragraph(" ", content));
+                    }
+                    cl = new PdfPCell(celda);
+                    cl.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    table.addCell(cl);
+                }
+            }
+        }
+
+        private void crearObservaciones(PdfPTable table, BaseColor color){
+            Font title = new Font(Font.FontFamily.HELVETICA, 7);
+            Font contentBold = new Font(Font.FontFamily.HELVETICA, 4, Font.BOLD);
+            Font content = new Font(Font.FontFamily.HELVETICA, 4);
+            contentBold.setColor(BaseColor.WHITE);
+            Paragraph celda = new Paragraph();
+            PdfPCell cl = new PdfPCell(celda);
+            int columnas =  table.getNumberOfColumns();
+            int filas = 6;
+
+            for (int i = 0; i<filas; i++){
+                celda = new Paragraph();
+                celda.add(new Paragraph(" ", content));
+                cl = new PdfPCell(celda);
                 table.addCell(cl);
             }
         }

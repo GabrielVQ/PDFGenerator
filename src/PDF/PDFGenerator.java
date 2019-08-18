@@ -1,10 +1,16 @@
 package PDF;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.sun.java.swing.plaf.windows.WindowsBorders;
 
+import javax.swing.border.Border;
+import java.awt.*;
 import java.io.*;
 
 public class PDFGenerator {
@@ -21,7 +27,7 @@ public class PDFGenerator {
         // We create the document and set the file name.
         // Creamos el documento e indicamos el nombre del fichero.
         try {
-            Document document = new Document(PageSize.LETTER, 1,1,4,4);
+            Document document = new Document(PageSize.LETTER, 1,1,6,2);
             try {
 
                 PdfWriter.getInstance(document, new FileOutputStream(pdfNewFile));
@@ -34,7 +40,8 @@ public class PDFGenerator {
             document.open();
 
 
-
+            //Ancho tablas
+            int ancho = 95;
             //Titulos de tablas
 
             Paragraph parrafo = new Paragraph("Este permiso debe ser presentado por lo menos con 48 horas de anticipación por el lider de la actividad", smallBold);
@@ -45,7 +52,7 @@ public class PDFGenerator {
             PdfPCell cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
-            label1.setWidthPercentage(95);
+            label1.setWidthPercentage(ancho);
             label1.addCell(cl);
             //titulo tabla 2
             PdfPTable label2 = new PdfPTable(1);
@@ -53,7 +60,7 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
-            label2.setWidthPercentage(95);
+            label2.setWidthPercentage(ancho);
             label2.addCell(cl);
 
             PdfPTable label3 = new PdfPTable(1);
@@ -61,7 +68,7 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
-            label3.setWidthPercentage(95);
+            label3.setWidthPercentage(ancho);
             label3.addCell(cl);
 
             PdfPTable label4 = new PdfPTable(1);
@@ -69,7 +76,7 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
-            label4.setWidthPercentage(95);
+            label4.setWidthPercentage(ancho);
             label4.addCell(cl);
 
             PdfPTable label5 = new PdfPTable(1);
@@ -77,7 +84,7 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
-            label5.setWidthPercentage(95);
+            label5.setWidthPercentage(ancho);
             label5.addCell(cl);
 
             PdfPTable label6 = new PdfPTable(1);
@@ -85,7 +92,7 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
-            label6.setWidthPercentage(95);
+            label6.setWidthPercentage(ancho);
             label6.addCell(cl);
 
             PdfPTable label7 = new PdfPTable(1);
@@ -93,7 +100,7 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
-            label7.setWidthPercentage(95);
+            label7.setWidthPercentage(ancho);
             label7.addCell(cl);
 
             PdfPTable label8 = new PdfPTable(1);
@@ -101,7 +108,7 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
-            label8.setWidthPercentage(95);
+            label8.setWidthPercentage(ancho);
             label8.addCell(cl);
 
             PdfPTable label9 = new PdfPTable(1);
@@ -109,13 +116,12 @@ public class PDFGenerator {
             cl = new PdfPCell(celda);
             cl.setHorizontalAlignment(Element.ALIGN_LEFT);
             cl.setBorder(0);
-            label9.setWidthPercentage(95);
+            label9.setWidthPercentage(ancho);
             label9.addCell(cl);
 
             //Color de tablas
             BaseColor color = new BaseColor(43,69,145);
-            //Ancho tablas
-            int ancho = 95;
+
             //Creacion de tablas
             PdfPTable header = new PdfPTable(3);
             header.setWidthPercentage(ancho);
@@ -214,9 +220,9 @@ public class PDFGenerator {
         }
     }
         private void crearHeader(PdfPTable table, BaseColor color){
-            Font title = new Font(Font.FontFamily.HELVETICA, 11);
-            Font headerFont1 = new Font(Font.FontFamily.HELVETICA, 8, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 13);
+            Font title = new Font(Font.FontFamily.HELVETICA, 12);
+            Font headerFont1 = new Font(Font.FontFamily.HELVETICA, 9, Font.BOLD);
+            Font content = new Font(Font.FontFamily.HELVETICA, 15);
             //celda logo
             Paragraph celda = new Paragraph();
 
@@ -224,7 +230,7 @@ public class PDFGenerator {
             Image image;
             try {
                 image = Image.getInstance(url);
-                image.scalePercent(4,4);// tamaño de la imagen
+                image.scalePercent(5,5);// tamaño de la imagen
                 image.setAlignment(Element.ALIGN_CENTER);
                 celda.add(new Paragraph(""));//imagen no quede topando con el borde
                 PdfPCell cl = new PdfPCell(celda);
@@ -497,6 +503,7 @@ public class PDFGenerator {
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
             int filas = 2;
+            Border b1 = new WindowsBorders.DashedBorder(Color.BLACK, 3);
             for (int i = 0; i<filas; i++){
                 for (int j = 0; j<columnas; j++){
                     celda = new Paragraph();
@@ -580,8 +587,7 @@ public class PDFGenerator {
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
-            int filas = 5;
-
+            int filas = 6;
             for (int i = 0; i<filas; i++){
                 celda = new Paragraph();
                 celda.add(new Paragraph(" ", content));

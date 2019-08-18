@@ -114,51 +114,53 @@ public class PDFGenerator {
 
             //Color de tablas
             BaseColor color = new BaseColor(43,69,145);
+            //Ancho tablas
+            int ancho = 95;
             //Creacion de tablas
             PdfPTable header = new PdfPTable(3);
-            header.setWidthPercentage(95);
+            header.setWidthPercentage(ancho);
             header.setWidths(new float[] {0.5f,2.5f,0.8f});
             PdfPTable headersolicitantestable = new PdfPTable(4);
-            headersolicitantestable.setWidthPercentage(95);
+            headersolicitantestable.setWidthPercentage(ancho);
             headersolicitantestable.setWidths(new float[] {3f,2f,2f,2f});
             PdfPTable solicitantestable = new PdfPTable(5);
-            solicitantestable.setWidthPercentage(95);
+            solicitantestable.setWidthPercentage(ancho);
             solicitantestable.setWidths(new float[] {0.4f,2.6f,2f,2f,2f});
             PdfPTable areatable = new PdfPTable(3);
-            areatable.setWidthPercentage(95);
+            areatable.setWidthPercentage(ancho);
             areatable.setWidths(new float[] {3f,2f,4f});
             PdfPTable headerrequerimiento = new PdfPTable(2);
-            headerrequerimiento.setWidthPercentage(95);
+            headerrequerimiento.setWidthPercentage(ancho);
             headerrequerimiento.setWidths(new float[] {5f,4f});
             PdfPTable requerimientotable = new PdfPTable(3);
-            requerimientotable.setWidthPercentage(95);
+            requerimientotable.setWidthPercentage(ancho);
             requerimientotable.setWidths(new float[] {5f, 1.5f, 2.5f});
             PdfPTable aprobaciontable = new PdfPTable(5);
-            aprobaciontable.setWidthPercentage(95);
+            aprobaciontable.setWidthPercentage(ancho);
             aprobaciontable.setWidths(new float[] {3f, 2f, 2f, 1f, 1f});
             PdfPTable energiatable = new PdfPTable(6);
-            energiatable.setWidthPercentage(95);
+            energiatable.setWidthPercentage(ancho);
             energiatable.setWidths(new float[] {3f, 2f, 1.2f, 1.2f, 0.7f, 0.9f});
             PdfPTable headerbloqueo = new PdfPTable(6);
-            headerbloqueo.setWidthPercentage(95);
+            headerbloqueo.setWidthPercentage(ancho);
             headerbloqueo.setWidths(new float[] {0.4f, 2.6f, 0.7f, 1.3f, 2f, 2f});
             PdfPTable headerbloqueo2 = new PdfPTable(10);
-            headerbloqueo2.setWidthPercentage(95);
+            headerbloqueo2.setWidthPercentage(ancho);
             headerbloqueo2.setWidths(new float[] {0.4f, 2.6f, 0.7f, 1.3f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
             PdfPTable bloquerodepartamentalduenotable = new PdfPTable(10);
-            bloquerodepartamentalduenotable.setWidthPercentage(95);
+            bloquerodepartamentalduenotable.setWidthPercentage(ancho);
             bloquerodepartamentalduenotable.setWidths(new float[] {0.4f, 2.6f, 0.7f, 1.3f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
             PdfPTable headerbloqueodepartamentallider = new PdfPTable(6);
-            headerbloqueodepartamentallider.setWidthPercentage(95);
+            headerbloqueodepartamentallider.setWidthPercentage(ancho);
             headerbloqueodepartamentallider.setWidths(new float[] {0.4f, 2.6f, 0.7f, 1.3f, 2f, 2f});
             PdfPTable bloqueodepartamentallidertable = new PdfPTable(10);
-            bloqueodepartamentallidertable.setWidthPercentage(95);
+            bloqueodepartamentallidertable.setWidthPercentage(ancho);
             bloqueodepartamentallidertable.setWidths(new float[] {0.4f, 2.6f, 0.7f, 1.3f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
             PdfPTable bloqueopersonaltable = new PdfPTable(10);
-            bloqueopersonaltable.setWidthPercentage(95);
+            bloqueopersonaltable.setWidthPercentage(ancho);
             bloqueopersonaltable.setWidths(new float[] {0.4f, 2.6f, 0.7f, 1.3f, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3, 2f/3});
             PdfPTable observaciones = new PdfPTable(1);
-            observaciones.setWidthPercentage(95);
+            observaciones.setWidthPercentage(ancho);
             //document.add(parrafo1);
 
             crearHeader(header, color);
@@ -479,7 +481,6 @@ public class PDFGenerator {
                 cl.setBorder(Rectangle.BOTTOM | Rectangle. LEFT | Rectangle. RIGHT);
                 table.addCell(cl);
             }
-
             for ( int i = 0; i<2; i++){
                 for (int j = 0; j<3; j++){
                     celda = new Paragraph();

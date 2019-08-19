@@ -22,7 +22,9 @@ public class PDFGenerator {
         private static final Font content = new Font(Font.FontFamily.TIMES_ROMAN, 7, Font.BOLD);
         private static final Font headerFont = new Font(Font.FontFamily.TIMES_ROMAN, 7, Font.BOLD, BaseColor.WHITE);
         private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 7, Font.BOLD);
+        //Color de tablas
         private static final BaseColor color = new BaseColor(43,69,145);
+        
     public void createPDF(File pdfNewFile) {
         // We create the document and set the file name.
         // Creamos el documento e indicamos el nombre del fichero.
@@ -119,7 +121,7 @@ public class PDFGenerator {
             label9.setWidthPercentage(ancho);
             label9.addCell(cl);
 
-            //Color de tablas
+
 
 
             //Creacion de tablas
@@ -169,21 +171,21 @@ public class PDFGenerator {
             observaciones.setWidthPercentage(ancho);
             //document.add(parrafo1);
 
-            crearHeader(header);
-            creaHeadersolicitantes(headersolicitantestable);
-            crearSolicitantesTable(solicitantestable);
-            crearAreaTable(areatable);
-            crearHeaderRequerimiento(headerrequerimiento);
-            crearRequerimientoTable(requerimientotable);
-            crearAprobacionTable(aprobaciontable);
-            crearEnergiaTable(energiatable);
-            crearHeaderBloqueo(headerbloqueo);
-            crearHeaderBloqueo2(headerbloqueo2);
-            crearBloqueoDepartamentalDuenoTable(bloquerodepartamentalduenotable);
-            crearHeaderBloqueoDepartamentalLider(headerbloqueodepartamentallider);
-            crearBloqueoDepartamentalLiderTable(bloqueodepartamentallidertable);
-            creaBloqueoPersonalTable(bloqueopersonaltable);
-            crearObservaciones(observaciones);
+            createHeader(header);
+            createHeaderApllicants(headersolicitantestable);
+            createApllicantsTable(solicitantestable);
+            createAreaTable(areatable);
+            createHeaderRequeriment(headerrequerimiento);
+            createRequerimentTable(requerimientotable);
+            createAprovallTable(aprobaciontable);
+            createEnergyTable(energiatable);
+            createHeaderBlock(headerbloqueo);
+            createHeaderBlock2(headerbloqueo2);
+            createBloqueoDepartmentalOwnerTable(bloquerodepartamentalduenotable);
+            createHeaderBlockDepartmentalLider(headerbloqueodepartamentallider);
+            createBlockDepartmentalLiderTable(bloqueodepartamentallidertable);
+            createBlockPersonalTable(bloqueopersonaltable);
+            createObservations(observaciones);
             //Agregar elementos al documento
             document.add(header);
             document.add(parrafo);
@@ -219,7 +221,7 @@ public class PDFGenerator {
             System.out.println("The file not exists (Se ha producido un error al generar un documento): " + documentException);
         }
     }
-        private void crearHeader(PdfPTable table){
+        private void createHeader(PdfPTable table){
             Font title = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.WHITE);
             Font headerFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 9, Font.BOLD, BaseColor.WHITE);
             Font subtitle = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD, BaseColor.WHITE);
@@ -274,7 +276,7 @@ public class PDFGenerator {
             table.addCell(cl);
         }
 
-        private void creaHeadersolicitantes(PdfPTable table){
+        private void createHeaderApllicants(PdfPTable table){
             //labels
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
@@ -290,7 +292,7 @@ public class PDFGenerator {
             }
         }
         //tabla de datos solicitantes
-        private void crearSolicitantesTable(PdfPTable table){
+        private void createApllicantsTable(PdfPTable table){
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int filas = 4;//asignar despues con valores dinamicos
@@ -311,8 +313,7 @@ public class PDFGenerator {
             }
         }
 
-        private void crearAreaTable(PdfPTable table){
-
+        private void createAreaTable(PdfPTable table){
             PDFGenerator.headerFont.setColor(BaseColor.WHITE);
             int filas =3;
             int columnas =3;
@@ -336,7 +337,7 @@ public class PDFGenerator {
                 }
             }
         }
-        private void crearHeaderRequerimiento(PdfPTable table){
+        private void createHeaderRequeriment(PdfPTable table){
 
             int columnas = table.getNumberOfColumns();
             String label[] = {"Trabajo a realizar (Especifique)", "Solicitud de fecha y hora de Bloqueo"};
@@ -352,7 +353,7 @@ public class PDFGenerator {
             }
         }
 
-        private void crearRequerimientoTable(PdfPTable table){
+        private void createRequerimentTable(PdfPTable table){
 
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
@@ -378,7 +379,7 @@ public class PDFGenerator {
             }
         }
 
-        private void crearAprobacionTable(PdfPTable table){
+        private void createAprovallTable(PdfPTable table){
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
 
@@ -401,10 +402,9 @@ public class PDFGenerator {
             }
         }
 
-        private void crearEnergiaTable(PdfPTable table){
+        private void createEnergyTable(PdfPTable table){
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
-
             String label[] = {"Nombre del que realiza la Verificación de Energía Cero", "Empresa", "Firma", "Valor medio", "Instrumernto", "Proceder (SI/NO"};
             int columnas = table.getNumberOfColumns();
             int filas = 2;//cambiar
@@ -424,7 +424,8 @@ public class PDFGenerator {
                 }
             }
         }
-        private void crearHeaderBloqueo(PdfPTable table){
+
+        private void createHeaderBlock(PdfPTable table){
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             String label[] = {"Núm.", "Nombre", "N°Candado", "Empresa", "Bloqueo (inicio de Bloqueo)", "Desbloqueo (Cierre de Hoja de Bloqueo)"};
@@ -469,13 +470,9 @@ public class PDFGenerator {
 //
 //            table.addCell(auxtabla);
 //            table.addCell(auxtabla);
-
-
-
-
         }
 
-        private void crearHeaderBloqueo2(PdfPTable table){
+        private void createHeaderBlock2(PdfPTable table){
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
@@ -499,7 +496,7 @@ public class PDFGenerator {
             }
         }
 
-        private void crearBloqueoDepartamentalDuenoTable(PdfPTable table){
+        private void createBloqueoDepartmentalOwnerTable(PdfPTable table){
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
@@ -521,7 +518,7 @@ public class PDFGenerator {
             }
         }
         
-        private void crearHeaderBloqueoDepartamentalLider(PdfPTable table){
+        private void createHeaderBlockDepartmentalLider(PdfPTable table){
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             String label[] = {"Núm.", "Nombre", "N°Candado", "Empresa", "Bloqueo", "Desbloqueo"};
@@ -542,7 +539,8 @@ public class PDFGenerator {
                 table.addCell(cl);
             }
         }
-        private void crearBloqueoDepartamentalLiderTable(PdfPTable table){
+
+        private void createBlockDepartmentalLiderTable(PdfPTable table){
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
@@ -563,7 +561,7 @@ public class PDFGenerator {
             }
         }
 
-        private void creaBloqueoPersonalTable(PdfPTable table){
+        private void createBlockPersonalTable(PdfPTable table){
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
@@ -584,7 +582,7 @@ public class PDFGenerator {
             }
         }
 
-        private void crearObservaciones(PdfPTable table){
+        private void createObservations(PdfPTable table){
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();

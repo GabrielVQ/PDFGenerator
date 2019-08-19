@@ -220,13 +220,13 @@ public class PDFGenerator {
         }
     }
         private void crearHeader(PdfPTable table){
-            Font title = new Font(Font.FontFamily.HELVETICA, 12);
-            Font headerFont1 = new Font(Font.FontFamily.HELVETICA, 9, Font.BOLD);
-            Font content = new Font(Font.FontFamily.HELVETICA, 16);
+            Font title = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.WHITE);
+            Font headerFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 9, Font.BOLD, BaseColor.WHITE);
+            Font subtitle = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD, BaseColor.WHITE);
             //celda logo
             Paragraph celda = new Paragraph();
 
-            String url = "src/Resources/Codelco_logo1.png";
+            String url = "src/Resources/Codelco_logo.png";
             Image image;
             try {
                 image = Image.getInstance(url);
@@ -250,7 +250,7 @@ public class PDFGenerator {
             celda = new Paragraph();
             celda.add(new Paragraph("Hoja de Permiso y Registro de Bloqueos",title));
             celda.add("\n");
-            celda.add(new Paragraph("(Pyrblo)",content));
+            celda.add(new Paragraph("(Pyrblo)",subtitle));
             cl = new PdfPCell(celda);
             cl.setBackgroundColor(color);
             cl.setBorder(Rectangle.TOP | Rectangle.BOTTOM);
@@ -302,7 +302,7 @@ public class PDFGenerator {
                         celda.add(new Paragraph(Integer.toString(i+1), content));
                     }
                     else{
-                        celda.add(new Paragraph(" ", PDFGenerator.headerFont));//asignar dinamicamente luego
+                        celda.add(new Paragraph(" ", content));//asignar dinamicamente luego
                     }
                     cl = new PdfPCell(celda);
                     cl.setHorizontalAlignment(Element.ALIGN_CENTER);

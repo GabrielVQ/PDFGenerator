@@ -14,7 +14,7 @@ import java.awt.*;
 import java.io.*;
 
 public class PDFGenerator {
-
+        Pyrblo pyrblo;
         // Fonts definitions (Definición de fuentes).
         private static final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 26, Font.BOLDITALIC);
         private static final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
@@ -24,7 +24,11 @@ public class PDFGenerator {
         private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 7, Font.BOLD);
         //Color de tablas
         private static final BaseColor color = new BaseColor(43,69,145);
-        
+
+    public PDFGenerator(Pyrblo pyrblo) {
+        this.pyrblo = pyrblo;
+    }
+
     public void createPDF(File pdfNewFile) {
         // We create the document and set the file name.
         // Creamos el documento e indicamos el nombre del fichero.
@@ -571,13 +575,51 @@ public class PDFGenerator {
                     celda = new Paragraph();
                     if (j==0){
                         celda.add(new Paragraph(Integer.toString(i+1), content));
+                        cl = new PdfPCell(celda);
+                        cl.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        table.addCell(cl);
+
                     }
                     else{
-                        celda.add(new Paragraph(" ", content));
+                        celda = new Paragraph();
+                        celda.add(new Paragraph(pyrblo.getNombrebloqueodepartamentalpersonal()[i], content));//nombre personal
+                        cl = new PdfPCell(celda);
+                        table.addCell(cl);
+                        celda = new Paragraph();
+                        celda.add(new Paragraph("N/A", content));//candado
+                        cl = new PdfPCell(celda);
+                        table.addCell(cl);
+                        celda = new Paragraph();
+                        celda.add(new Paragraph("Codelco", content));//empresa
+                        cl = new PdfPCell(celda);
+                        table.addCell(cl);
+                        celda = new Paragraph();
+                        celda.add(new Paragraph(pyrblo.getFechainiciobloqueodepartamentalpersonal()[i], content));//fecha inicio bloqueo
+                        cl = new PdfPCell(celda);
+                        table.addCell(cl);
+                        celda = new Paragraph();
+                        celda.add(new Paragraph(pyrblo.getHorainiciobloqueodepartamentalpersonal()[i], content));//hora inicio bloqueo
+                        cl = new PdfPCell(celda);
+                        table.addCell(cl);
+                        celda = new Paragraph();
+                        celda.add(new Paragraph(" ", content));//firma
+                        cl = new PdfPCell(celda);
+                        table.addCell(cl);
+                        celda = new Paragraph();
+                        celda.add(new Paragraph(" ", content));//fecha desbloqueo
+                        cl = new PdfPCell(celda);
+                        table.addCell(cl);
+                        celda = new Paragraph();
+                        celda.add(new Paragraph(" ", content));//hora desbloqueo
+                        cl = new PdfPCell(celda);
+                        table.addCell(cl);
+                        celda = new Paragraph();
+                        celda.add(new Paragraph(" ", content));//firma
+                        cl = new PdfPCell(celda);
+                        table.addCell(cl);
+                        j=10;
+
                     }
-                    cl = new PdfPCell(celda);
-                    cl.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    table.addCell(cl);
                 }
             }
         }

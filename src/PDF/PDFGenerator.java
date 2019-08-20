@@ -299,9 +299,31 @@ public class PDFGenerator {
         private void createApllicantsTable(PdfPTable table){
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
-            int filas = 4;//asignar despues con valores dinamicos
+            int filas = pyrblo.getSolicitantes().size();//asignar despues con valores dinamicos
             int columnas = 5;
-            for (int i = 0; i<filas; i++){
+            for (int i =0; i<filas; i++){
+                celda = new Paragraph();
+                celda.add(new Paragraph(Integer.toString(i+1), content));//nombre solicitantes
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getSolicitantes().get(i).getNombre(), content));//nombre solicitantes
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getSolicitantes().get(i).getDisciplina(), content));//nombre solicitantes
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getSolicitantes().get(i).getEmpresa(), content));//nombre solicitantes
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getSolicitantes().get(i).getCelular(), content));//nombre solicitantes
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+            }
+            /*for (int i = 0; i<filas; i++){
                 for (int j = 0; j<columnas; j++){
                     celda = new Paragraph();
                     if(j == 0){
@@ -314,17 +336,18 @@ public class PDFGenerator {
                     cl.setHorizontalAlignment(Element.ALIGN_CENTER);
                     table.addCell(cl);
                 }
-            }
+            }*/
         }
 
         private void createAreaTable(PdfPTable table){
             PDFGenerator.headerFont.setColor(BaseColor.WHITE);
-            int filas =3;
+            int filas =pyrblo.getEquipos().size();
             int columnas =3;
             String label[] = {"Equipo o Sistema", "Área de Bloqueo (OIM/DIS/DPM/ETC)", "Tag o Sistema"};
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
-            for (int i = 0; i<filas; i++){
+
+            for (int i = 0; i<columnas; i++){
                 celda = new Paragraph();
                 celda.add(new Paragraph(label[i], PDFGenerator.headerFont));
                 cl = new PdfPCell(celda);
@@ -333,13 +356,30 @@ public class PDFGenerator {
                 table.addCell(cl);
             }
             for (int i = 0; i<filas; i++){
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getEquipos().get(i).getNombreEquipo(), content));
+                cl = new PdfPCell(celda);
+                cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getEquipos().get(i).getAreaBloqueo(), content));
+                cl = new PdfPCell(celda);
+                cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getEquipos().get(i).getTag(), content));
+                cl = new PdfPCell(celda);
+                cl.setHorizontalAlignment(Element.ALIGN_LEFT);
+                table.addCell(cl);
+            }
+            /*for (int i = 0; i<filas; i++){
                 for (int j = 0; j<columnas; j++){
                     celda = new Paragraph();
                     celda.add(new Paragraph(" ", content)); //agregar
                     cl = new PdfPCell(celda);
                     table.addCell(cl);
                 }
-            }
+            }*/
         }
         private void createHeaderRequeriment(PdfPTable table){
 
@@ -363,9 +403,32 @@ public class PDFGenerator {
             PdfPCell cl = new PdfPCell(celda);
             BaseColor color = new BaseColor(149, 168, 222);
             int columnas = table.getNumberOfColumns();
-            int filas = 2;
+            int filas = pyrblo.getRequerimiento().size()+1;
             String label[] = {"Desde (Hora/Fecha)","Hasta (Hora/Fecha)"};
             for (int i = 0; i<filas; i++){
+                celda = new Paragraph();
+                celda.add(new Paragraph(new Paragraph(pyrblo.getRequerimiento().get(0).getNombreTrabajo(), content)));//nombre trabajo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(new Paragraph(label[i], content)));
+                cl = new PdfPCell(celda);
+                cl.setBackgroundColor(color);
+                table.addCell(cl);
+                if(i == 0) {
+                    celda = new Paragraph();
+                    celda.add(new Paragraph(new Paragraph(pyrblo.getRequerimiento().get(0).getFechadesde(), content)));//fecha desde
+                    cl = new PdfPCell(celda);
+                    table.addCell(cl);
+                }
+                if (i == 1){
+                    celda = new Paragraph();
+                    celda.add(new Paragraph(new Paragraph(pyrblo.getRequerimiento().get(0).getFechahasta(), content)));//fecha hasta
+                    cl = new PdfPCell(celda);
+                    table.addCell(cl);
+                }
+            }
+            /*for (int i = 0; i<filas; i++){
                 for (int j = 0; j<columnas; j++){
                     celda = new Paragraph();
                     if(j == 1){
@@ -380,7 +443,7 @@ public class PDFGenerator {
                     cl.setHorizontalAlignment(Element.ALIGN_LEFT);
                     table.addCell(cl);
                 }
-            }
+            }*/
         }
 
         private void createAprovallTable(PdfPTable table){
@@ -504,9 +567,52 @@ public class PDFGenerator {
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
-            int filas = 2;
             Border b1 = new WindowsBorders.DashedBorder(Color.BLACK, 3);
+            int filas = 1;//!!!!OJO aca cambiar cuando se defina el lider
             for (int i = 0; i<filas; i++){
+                celda = new Paragraph();
+                celda.add(new Paragraph(Integer.toString(i+1), content));//numeracion
+                cl = new PdfPCell(celda);
+                cl.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getNombre(), content));//nombre personal
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph("N/A", content));//candado
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getEmpresa(), content));//empresa
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getFechabloqueo(), content));//fecha inicio bloqueo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getHorabloqueo(), content));//hora inicio bloqueo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(" ", content));//firma
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getFechadesbloqueo(), content));//fecha desbloqueo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getHoradesbloqueo(), content));//hora desbloqueo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(" ", content));//firma
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+            }
+            /*for (int i = 0; i<filas; i++){
                 for (int j = 0; j<columnas; j++){
                     celda = new Paragraph();
                     if (j==0){
@@ -519,7 +625,7 @@ public class PDFGenerator {
                     cl.setHorizontalAlignment(Element.ALIGN_CENTER);
                     table.addCell(cl);
                 }
-            }
+            }*/
         }
         
         private void createHeaderBlockDepartmentalLider(PdfPTable table){
@@ -548,8 +654,51 @@ public class PDFGenerator {
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
-            int filas = 4;
+            int filas = 1;//!!!!OJO aca cambiar cuando se defina el lider
             for (int i = 0; i<filas; i++){
+                celda = new Paragraph();
+                celda.add(new Paragraph(Integer.toString(i+1), content));//numeracion
+                cl = new PdfPCell(celda);
+                cl.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getNombre(), content));//nombre personal
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph("N/A", content));//candado
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getEmpresa(), content));//empresa
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getFechabloqueo(), content));//fecha inicio bloqueo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getHorabloqueo(), content));//hora inicio bloqueo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(" ", content));//firma
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getFechadesbloqueo(), content));//fecha desbloqueo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getHoradesbloqueo(), content));//hora desbloqueo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(" ", content));//firma
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+            }
+            /*for (int i = 0; i<filas; i++){
                 for (int j = 0; j<columnas; j++){
                     celda = new Paragraph();
                     if (j==0){
@@ -562,15 +711,58 @@ public class PDFGenerator {
                     cl.setHorizontalAlignment(Element.ALIGN_CENTER);
                     table.addCell(cl);
                 }
-            }
+            }*/
         }
 
         private void createBlockPersonalTable(PdfPTable table){
             Paragraph celda = new Paragraph();
             PdfPCell cl = new PdfPCell(celda);
             int columnas =  table.getNumberOfColumns();
-            int filas = 15;
+            int filas = pyrblo.getPersonal().size();
             for (int i = 0; i<filas; i++){
+                celda = new Paragraph();
+                celda.add(new Paragraph(Integer.toString(i+1), content));//numeracion
+                cl = new PdfPCell(celda);
+                cl.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getNombre(), content));//nombre personal
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph("N/A", content));//candado
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getEmpresa(), content));//empresa
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getFechabloqueo(), content));//fecha inicio bloqueo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getHorabloqueo(), content));//hora inicio bloqueo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(" ", content));//firma
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getFechadesbloqueo(), content));//fecha desbloqueo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getHoradesbloqueo(), content));//hora desbloqueo
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(" ", content));//firma
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+            }
+            /*for (int i = 0; i<filas; i++){
                 for (int j = 0; j<columnas; j++){
                     celda = new Paragraph();
                     if (j==0){
@@ -582,7 +774,7 @@ public class PDFGenerator {
                     }
                     else{
                         celda = new Paragraph();
-                        celda.add(new Paragraph(pyrblo.getNombrebloqueodepartamentalpersonal()[i], content));//nombre personal
+                       // celda.add(new Paragraph(pyrblo.getNombrebloqueodepartamentalpersonal()[i], content));//nombre personal
                         cl = new PdfPCell(celda);
                         table.addCell(cl);
                         celda = new Paragraph();
@@ -590,15 +782,15 @@ public class PDFGenerator {
                         cl = new PdfPCell(celda);
                         table.addCell(cl);
                         celda = new Paragraph();
-                        celda.add(new Paragraph("Codelco", content));//empresa
+                        //celda.add(new Paragraph(pyrblo.getPersonal()[i].getEmpresa(), content));//empresa
                         cl = new PdfPCell(celda);
                         table.addCell(cl);
                         celda = new Paragraph();
-                        celda.add(new Paragraph(pyrblo.getFechainiciobloqueodepartamentalpersonal()[i], content));//fecha inicio bloqueo
+                        //celda.add(new Paragraph(pyrblo.getFechainiciobloqueodepartamentalpersonal()[i], content));//fecha inicio bloqueo
                         cl = new PdfPCell(celda);
                         table.addCell(cl);
                         celda = new Paragraph();
-                        celda.add(new Paragraph(pyrblo.getHorainiciobloqueodepartamentalpersonal()[i], content));//hora inicio bloqueo
+                        //celda.add(new Paragraph(pyrblo.getHorainiciobloqueodepartamentalpersonal()[i], content));//hora inicio bloqueo
                         cl = new PdfPCell(celda);
                         table.addCell(cl);
                         celda = new Paragraph();
@@ -621,7 +813,7 @@ public class PDFGenerator {
 
                     }
                 }
-            }
+            }*/
         }
 
         private void createObservations(PdfPTable table){

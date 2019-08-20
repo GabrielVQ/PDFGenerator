@@ -1,8 +1,65 @@
 package PDF;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Pyrblo {
 
-    private String liderActividad[];
+    private ArrayList<Personal> owner;
+    private ArrayList<Personal> lider;
+    private ArrayList<Personal> personal;
+    private ArrayList<Solicitantes> solicitantes;
+    private ArrayList<Equipo> equipos;
+    private ArrayList<Requerimiento> requerimiento;
+
+    public ArrayList<Requerimiento> getRequerimiento() {
+        return requerimiento;
+    }
+
+    public void setRequerimiento(ArrayList<Requerimiento> requerimiento) {
+        this.requerimiento = requerimiento;
+    }
+
+    public ArrayList<Equipo> getEquipos() {
+        return equipos;
+    }
+
+    public void setEquipos(ArrayList<Equipo> equipos) {
+        this.equipos = equipos;
+    }
+
+    public ArrayList<Personal> getOwner() {
+        return owner;
+    }
+
+    public void setOwner(ArrayList<Personal> owner) {
+        this.owner = owner;
+    }
+
+    public ArrayList<Personal> getLider() {
+        return lider;
+    }
+
+    public void setLider(ArrayList<Personal> lider) {
+        this.lider = lider;
+    }
+
+    public ArrayList<Personal> getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(ArrayList<Personal> personal) {
+        this.personal = personal;
+    }
+
+    public ArrayList<Solicitantes> getSolicitantes() {
+        return solicitantes;
+    }
+
+    public void setSolicitantes(ArrayList<Solicitantes> solicitantes) {
+        this.solicitantes = solicitantes;
+    }
+/*private String liderActividad[];
     private String disciplina[];
     private String empresa[];
     private String celular[];
@@ -329,5 +386,5 @@ public class Pyrblo {
 
     public void setHorafindesbloqueodepartamentalpersonal(String[] horafindesbloqueodepartamentalpersonal) {
         this.horafindesbloqueodepartamentalpersonal = horafindesbloqueodepartamentalpersonal;
-    }
+    }*/
 }

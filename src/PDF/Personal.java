@@ -7,6 +7,25 @@ public class Personal {
     private String horabloqueo;
     private String fechadesbloqueo;
     private String horadesbloqueo;
+    private String firma1;
+    private String firma2;
+
+    public String getFirma1() {
+        return firma1;
+    }
+
+    public void setFirma1(String firma1) {
+        this.firma1 = firma1;
+    }
+
+    public String getFirma2() {
+        return firma2;
+    }
+
+    public void setFirma2(String firma2) {
+        this.firma2 = firma2;
+    }
+
 
     public String getNombre() {
         return nombre;

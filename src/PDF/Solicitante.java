@@ -1,6 +1,6 @@
 package PDF;
 
-public class Solicitantes {
+public class Solicitante {
     private String nombre;
     private String disciplina;
     private String empresa;

@@ -1,6 +1,5 @@
 package PDF;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Pyrblo {
@@ -8,16 +7,36 @@ public class Pyrblo {
     private ArrayList<Personal> owner;
     private ArrayList<Personal> lider;
     private ArrayList<Personal> personal;
-    private ArrayList<Solicitantes> solicitantes;
+    private ArrayList<Solicitante> solicitantes;
     private ArrayList<Equipo> equipos;
-    private ArrayList<Requerimiento> requerimiento;
+    private ArrayList<Requerimiento> requerimientos;
+    private ArrayList<Energia> energias;
 
-    public ArrayList<Requerimiento> getRequerimiento() {
-        return requerimiento;
+    public ArrayList<Energia> getEnergias() {
+        return energias;
     }
 
-    public void setRequerimiento(ArrayList<Requerimiento> requerimiento) {
-        this.requerimiento = requerimiento;
+    public void setEnergias(ArrayList<Energia> energias) {
+        this.energias = energias;
+    }
+
+    public int verficarbloqueo(String nombre, ArrayList<Personal> personal){
+        for (int i =0; i<personal.size();i++){
+            if(nombre.compareTo(personal.get(i).getNombre()) == 0){
+                if(personal.get(i).getFechadesbloqueo() == null){
+                    return i;
+                }
+            }
+        }
+            return -1;
+    }
+
+    public ArrayList<Requerimiento> getRequerimientos() {
+        return requerimientos;
+    }
+
+    public void setRequerimientos(ArrayList<Requerimiento> requerimientos) {
+        this.requerimientos = requerimientos;
     }
 
     public ArrayList<Equipo> getEquipos() {
@@ -52,11 +71,11 @@ public class Pyrblo {
         this.personal = personal;
     }
 
-    public ArrayList<Solicitantes> getSolicitantes() {
+    public ArrayList<Solicitante> getSolicitantes() {
         return solicitantes;
     }
 
-    public void setSolicitantes(ArrayList<Solicitantes> solicitantes) {
+    public void setSolicitantes(ArrayList<Solicitante> solicitantes) {
         this.solicitantes = solicitantes;
     }
 /*private String liderActividad[];

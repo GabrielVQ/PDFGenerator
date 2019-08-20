@@ -403,11 +403,11 @@ public class PDFGenerator {
             PdfPCell cl = new PdfPCell(celda);
             BaseColor color = new BaseColor(149, 168, 222);
             int columnas = table.getNumberOfColumns();
-            int filas = pyrblo.getRequerimiento().size()+1;
+            int filas = pyrblo.getRequerimientos().size()+1;
             String label[] = {"Desde (Hora/Fecha)","Hasta (Hora/Fecha)"};
             for (int i = 0; i<filas; i++){
                 celda = new Paragraph();
-                celda.add(new Paragraph(new Paragraph(pyrblo.getRequerimiento().get(0).getNombreTrabajo(), content)));//nombre trabajo
+                celda.add(new Paragraph(new Paragraph(pyrblo.getRequerimientos().get(0).getNombreTrabajo(), content)));//nombre trabajo
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
                 celda = new Paragraph();
@@ -417,13 +417,13 @@ public class PDFGenerator {
                 table.addCell(cl);
                 if(i == 0) {
                     celda = new Paragraph();
-                    celda.add(new Paragraph(new Paragraph(pyrblo.getRequerimiento().get(0).getFechadesde(), content)));//fecha desde
+                    celda.add(new Paragraph(new Paragraph(pyrblo.getRequerimientos().get(0).getFechadesde(), content)));//fecha desde
                     cl = new PdfPCell(celda);
                     table.addCell(cl);
                 }
                 if (i == 1){
                     celda = new Paragraph();
-                    celda.add(new Paragraph(new Paragraph(pyrblo.getRequerimiento().get(0).getFechahasta(), content)));//fecha hasta
+                    celda.add(new Paragraph(new Paragraph(pyrblo.getRequerimientos().get(0).getFechahasta(), content)));//fecha hasta
                     cl = new PdfPCell(celda);
                     table.addCell(cl);
                 }
@@ -474,7 +474,7 @@ public class PDFGenerator {
             PdfPCell cl = new PdfPCell(celda);
             String label[] = {"Nombre del que realiza la Verificación de Energía Cero", "Empresa", "Firma", "Valor medio", "Instrumernto", "Proceder (SI/NO"};
             int columnas = table.getNumberOfColumns();
-            int filas = 2;//cambiar
+            int filas = pyrblo.getEnergias().size();//cambiar
             for (int i = 0; i<columnas; i++){
                 celda = new Paragraph();
                 celda.add(new Paragraph(label[i], PDFGenerator.headerFont));
@@ -483,12 +483,31 @@ public class PDFGenerator {
                 table.addCell(cl);
             }
             for (int i = 0; i<filas; i++) {
-                for (int j = 0; j < columnas; j++) {
-                    celda = new Paragraph();
-                    celda.add(new Paragraph(" ", content)); //agregar
-                    cl = new PdfPCell(celda);
-                    table.addCell(cl);
-                }
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getEnergias().get(i).getNombre(), content)); //nombre
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getEnergias().get(i).getEmpresa(), content)); //empresa
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getEnergias().get(i).getFirma(), content)); //firma
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getEnergias().get(i).getValormedido(), content)); //valor medido
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getEnergias().get(i).getInstrumento(), content)); //instrumento
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+                celda = new Paragraph();
+                celda.add(new Paragraph(pyrblo.getEnergias().get(i).getProceder(), content)); //proceder
+                cl = new PdfPCell(celda);
+                table.addCell(cl);
+
             }
         }
 
@@ -596,7 +615,7 @@ public class PDFGenerator {
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
                 celda = new Paragraph();
-                celda.add(new Paragraph(" ", content));//firma
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getFirma1(), content));//firma
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
                 celda = new Paragraph();
@@ -608,7 +627,7 @@ public class PDFGenerator {
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
                 celda = new Paragraph();
-                celda.add(new Paragraph(" ", content));//firma
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getFirma2(), content));//firma
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
             }
@@ -682,7 +701,7 @@ public class PDFGenerator {
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
                 celda = new Paragraph();
-                celda.add(new Paragraph(" ", content));//firma
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getFirma1(), content));//firma
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
                 celda = new Paragraph();
@@ -694,7 +713,7 @@ public class PDFGenerator {
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
                 celda = new Paragraph();
-                celda.add(new Paragraph(" ", content));//firma
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getFirma2(), content));//firma
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
             }
@@ -746,7 +765,7 @@ public class PDFGenerator {
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
                 celda = new Paragraph();
-                celda.add(new Paragraph(" ", content));//firma
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getFirma1(), content));//firma
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
                 celda = new Paragraph();
@@ -758,7 +777,7 @@ public class PDFGenerator {
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
                 celda = new Paragraph();
-                celda.add(new Paragraph(" ", content));//firma
+                celda.add(new Paragraph(pyrblo.getPersonal().get(i).getFirma2(), content));//firma
                 cl = new PdfPCell(celda);
                 table.addCell(cl);
             }

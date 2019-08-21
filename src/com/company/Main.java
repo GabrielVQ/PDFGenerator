@@ -138,41 +138,35 @@ public class Main {
             i++;
         }*/
         //tabla 5 energias
-        rs = statement.executeQuery("SELECT \n" +
-                "\tsbhe.scheduled_block_has_zero_power_test AS ESTADO_ENERGÍA_ZERO, w.worker_names AS NOMBRE_RESPONSABLE, w.worker_last_name AS APELLIDO_RESPONSABLE, e.enterprise_name AS EMPRESA, wl.action AS ESTADO_ENERGÍA_ZERO_EN_WORKER, wl.timestamp FIN_BLOQUEO\n" +
-                "FROM    \n" +
-                "\tscheduled_block sb\n" +
-                "INNER JOIN \n" +
-                "\tenterprise e\n" +
-                "ON\n" +
-                "\tsb.enterprise_id = e.enterprise_id\n" +
-                "INNER JOIN \n" +
-                "\tworker w\n" +
-                "ON\n" +
-                "\tw.enterprise_id = e.enterprise_id\n" +
-                "INNER JOIN\n" +
-                "\tworker_log wl\n" +
-                "ON\n" +
-                "\twl.worker_id = w.worker_id\n" +
-                "INNER JOIN\n" +
-                "\tscheduled_block_has_worker sbhw\n" +
-                "ON\n" +
-                "\tw.worker_id = sbhw.worker_id\n" +
-                "INNER JOIN\n" +
-                "\tscheduled_block_has_equipment sbhe\n" +
-                "ON\n" +
-                "\tsbhe.scheduled_block_id = sb.scheduled_block_id\n" +
-                "WHERE \n" +
-                "\tsbhe.scheduled_block_has_zero_power_test = 'READY' AND sbhw.scheduled_block_id =" +id+" AND sbhw.scheduled_block_has_worker_state = 'LOCK_NON_PLACED' AND wl.action = 'LOCK_NON_PLACED';");
+        rs = statement.executeQuery("SELECT scheduled_block_id,\n" +
+                "\tCASE\n" +
+                "\t\tWHEN ZeroEnergy > 0 THEN 'NOT_VERIFIED'\n" +
+                "        WHEN ZeroEnergy = 0 THEN 'VERIFIED'\n" +
+                "\tEND as ZeroVerification\n" +
+                "    FROM( SELECT\n" +
+                "        scheduled_block_id, status, SUM( Status) as ZeroEnergy\n" +
+                "    FROM\n" +
+                "        (SELECT \n" +
+                "        scheduled_block_id,\n" +
+                "\t\tscheduled_block_has_machine_state,\n" +
+                "        scheduled_block_has_zero_power_test,\n" +
+                "            CASE\n" +
+                "                WHEN scheduled_block_has_zero_power_test = 'READY' THEN 0\n" +
+                "                WHEN scheduled_block_has_zero_power_test = 'NOT_READY' THEN 1\n" +
+                "            END AS Status\n" +
+                "    FROM\n" +
+                "        block_mel_db_dev.scheduled_block_has_equipment) AS A\n" +
+                "\tGROUP BY scheduled_block_id) as B\n" +
+                "    WHERE scheduled_block_id ="+id+";");
 
         ArrayList<Energia> energias = new ArrayList<>();
         Energia en;
         while (rs.next()){
             en = new Energia();
-            en.setNombre(rs.getString("NOMBRE_RESPONSABLE")+" "+rs.getString("APELLIDO_RESPONSABLE"));//nombre equipo
-            en.setEmpresa(rs.getString("EMPRESA"));//area bloqueo
+            en.setNombre("Responsable");//nombre equipo
+            en.setEmpresa("Codelco");//area bloqueo
             en.setFirma("Firmado electronicamente");//tag
-            en.setValormedido(rs.getString("ESTADO_ENERGÍA_ZERO_EN_WORKER"));
+            en.setValormedido(rs.getString("ZeroVerification"));
             en.setInstrumento("Instrumento");
             en.setProceder(" ");
             energias.add(en);
